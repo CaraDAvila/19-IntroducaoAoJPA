@@ -1,4 +1,4 @@
-package config;
+package fiap.com.br.assistencia.config;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
