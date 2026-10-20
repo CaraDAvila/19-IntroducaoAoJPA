@@ -7,7 +7,9 @@ import lombok.Setter;
 
 @Entity
 @Table (name = "JAVA_CLIENTE")
-@Getter @Setter @NoArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
