@@ -46,7 +46,7 @@ public class ClienteController {
     @PutMapping ("/atualizar/{id}")
     public ClienteResponse atualizar (@PathVariable Long id,@RequestBody ClienteRequest dto){return service.atualizar(id,dto);}
 
-    @GetMapping ("/pesquisar-email")
+    @GetMapping ("/pesquisar-email/{email}")
     public ClienteResponse pesquisarEmail (@PathVariable String email){return service.pesquisarPorEmail(email);}
 
 
