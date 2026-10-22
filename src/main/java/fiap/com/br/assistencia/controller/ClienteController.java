@@ -39,4 +39,15 @@ public class ClienteController {
     public List<ClienteResponse> listarId(@PathVariable Long id){
         return service.listarPorId(id);
     }
+
+    @DeleteMapping ("/remover/{id}")
+    public void remover (@PathVariable Long id){service.remover(id);}
+
+    @PutMapping ("/atualizar/{id}")
+    public ClienteResponse atualizar (@PathVariable Long id,@RequestBody ClienteRequest dto){return service.atualizar(id,dto);}
+
+    @GetMapping ("/pesquisar-email")
+    public ClienteResponse pesquisarEmail (@PathVariable String email){return service.pesquisarPorEmail(email);}
+
+
 }

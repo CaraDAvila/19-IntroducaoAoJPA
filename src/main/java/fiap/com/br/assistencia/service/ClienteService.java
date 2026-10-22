@@ -29,6 +29,8 @@ public class ClienteService {
 
         Cliente aux = repo.save(cliente);
         return map.paraResposta(aux);
+
+
     }
 
     public ClienteResponse pesquisar(Long id) {
@@ -47,5 +49,28 @@ public class ClienteService {
                 map(cliente -> map.paraResposta(cliente)).
                 toList();
     }
+
+    public void remover(Long id){
+        repo.deleteById(id);
+    }
+
+    @Transactional
+    public ClienteResponse atualizar (Long id, ClienteRequest dto){
+        Cliente cliente = repo.findById(id).orElseThrow();
+
+        cliente.setEmail(dto.email());
+        cliente.setNome(dto.nome());
+        cliente.setTelefone(dto.telefone());
+        //questionable
+        cliente.setSenha(dto.senha());
+
+        return map.paraResposta(cliente);
+    }
+
+    public ClienteResponse pesquisarPorEmail(String email){
+        Cliente cliente = repo.findClienteByEmail(email).orElseThrow();
+        return map.paraResposta(cliente);
+    }
+
 
 }
