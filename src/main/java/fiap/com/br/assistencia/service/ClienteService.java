@@ -17,7 +17,6 @@ public class ClienteService {
     private final ClienteMapper map;
 
 
-
     public ClienteService(ClienteRepository repo, ClienteMapper map) {
         this.repo = repo;
         this.map = map;
@@ -26,26 +25,27 @@ public class ClienteService {
     //metodos
     @Transactional //faz uma transacao no banco de dados
     public ClienteResponse salvar(ClienteRequest dto) {
-        Cliente cliente =map.paraEntidade(dto);
+        Cliente cliente = map.paraEntidade(dto);
 
-        Cliente aux= repo.save(cliente);
+        Cliente aux = repo.save(cliente);
         return map.paraResposta(aux);
     }
 
-    public ClienteResponse pesquisar (Long id){
+    public ClienteResponse pesquisar(Long id) {
         Cliente cliente = repo.findById(id).orElseThrow();
         return map.paraResposta(cliente);
     }
 
-    public List<ClienteResponse> listar (){
+    public List<ClienteResponse> listar() {
         return repo.findAll().stream().
                 map(cliente -> map.paraResposta(cliente)).
                 toList();
     }
 
-    public List<ClienteResponse> listarPorId (Long id){
-        Cliente cliente = repo.findById(id).stream();
-        return map.paraResposta(cliente));
-
+    public List<ClienteResponse> listarPorId(Long id) {
+        return repo.findById(id).stream().
+                map(cliente -> map.paraResposta(cliente)).
+                toList();
     }
 
+}
